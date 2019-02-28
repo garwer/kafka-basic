@@ -1,0 +1,26 @@
+server:
+  port: 8083
+
+#无sasl方式
+#spring:
+#  kafka:
+#    producer:
+#      #这边会先连47.98.176.212:9092 再匹配相应的hostname 这边我用aliyun外网 需修改kafka中的server.properties配置
+#      bootstrap-servers: 47.98.176.212:9092
+
+#sasl校验方式
+spring:
+  kafka:
+    producer:
+      #这边会先连47.98.176.212:9092 再匹配相应的hostname 这边我用aliyun外网 需修改kafka中的server.properties配置
+      bootstrap-servers: 47.98.176.212:9092
+      value-serializer-encoding: UTF8
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        sasl.mechanism: PLAIN
+        security.protocol: SASL_PLAINTEXT
+        sasl.jaas.config: "org.apache.kafka.common.security.plain.PlainLoginModule required
+                            username=\"garwer\"
+                            password=\"garwer123\";"
+
